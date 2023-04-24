@@ -16,13 +16,13 @@ SetupTruckerInfo = function(data) {
         $("#trucker-header-progress-current").html("Current: " + data.CurrentRep + " REP");
         $("#trucker-header-tier").html("Tier " + AmountOfTiers);
         $("#trucker-header-progress-next").html("Next: MAX");
-    
+
         $(".trucker-header-progress-fill").css("width", "100%");
     } else {
         $("#trucker-header-progress-current").html("Current: " + data.CurrentRep + " REP");
         $("#trucker-header-tier").html("Tier " + data.CurrentTier);
         $("#trucker-header-progress-next").html("Next: " + (data.CurrentTierData.max - data.CurrentRep) + " REP");
-    
+
         $(".trucker-header-progress-fill").css("width", ProgressPercentage + "%");
     }
 }

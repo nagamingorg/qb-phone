@@ -60,7 +60,7 @@ $(document).on('click', '.storeapp-remove', function(e){
     }));
     setTimeout(function(){
         $.post('https://qb-phone/SetupStoreApps', JSON.stringify({}), function(data){
-            SetupAppstore(data); 
+            SetupAppstore(data);
         });
     }, 100);
 });
@@ -99,7 +99,7 @@ $(document).on('click', '.download-password-accept', function(e){
                         $(applicationSlot).html(icon+'<div class="app-unread-alerts">0</div>');
                         $(applicationSlot).prop('title', Installed.data.tooltipText);
                         $(applicationSlot).data('app', Installed.data.app);
-            
+
                         if (Installed.data.tooltipPos !== undefined) {
                             $(applicationSlot).data('placement', Installed.data.tooltipPos)
                         }

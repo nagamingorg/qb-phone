@@ -8,6 +8,7 @@ $(document).on('click', '.meos-block', function(e){
 });
 
 OpenMeosPage = function(page) {
+    $.post('https://qb-phone/SetFocusInput', JSON.stringify({}), function(){})
     CurrentMeosPage = page;
     $(".meos-"+CurrentMeosPage+"-page").css({"display":"block"});
     $(".meos-homescreen").animate({
@@ -21,7 +22,7 @@ OpenMeosPage = function(page) {
         }, 200)
         if (CurrentMeosPage == "alerts") {
             $(".meos-recent-alert").removeClass("noodknop");
-            $(".meos-recent-alert").css({"background-color":"#004682"}); 
+            $(".meos-recent-alert").css({"background-color":"#004682"});
         }
     });
 }
@@ -31,6 +32,7 @@ SetupMeosHome = function() {
 }
 
 MeosHomePage = function() {
+    $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
     $(".meos-tabs-footer").animate({
         bottom: -5+"vh"
     }, 200);
@@ -203,6 +205,7 @@ $(document).on('click', '.confirm-search-person-test', function(e){
         });
     } else {
         QB.Phone.Notifications.Add("politie", "MDT", "There are no search results!");
+        $.post('https://qb-phone/SetFocusInput', JSON.stringify({}), function(){})
         $(".person-search-results").html("");
     }
 });
@@ -236,7 +239,7 @@ $(document).on('click', '.confirm-search-person-house', function(e){
 $(document).on('click', '.confirm-search-vehicle', function(e){
     e.preventDefault();
     var SearchName = $(".vehicle-search-input").val();
-    
+
     if (SearchName !== "") {
         $.post('https://qb-phone/FetchVehicleResults', JSON.stringify({
             input: SearchName,
@@ -252,7 +255,7 @@ $(document).on('click', '.confirm-search-vehicle', function(e){
                     if (vehicle.isFlagged) {
                         Flagged = "Yes";
                     }
-                    
+
                     var VehicleElement = '<div class="vehicle-search-result"> <div class="vehicle-search-result-name">'+vehicle.label+'</div> <div class="vehicle-search-result-plate">License Plate: '+vehicle.plate+'</div> <div class="vehicle-opensplit"></div> &nbsp; <div class="vehicle-search-result-owner">Owner: '+vehicle.owner+'</div> &nbsp; <div class="vehicle-search-result-apk">MOT: '+APK+'</div> <div class="vehicle-search-result-warrant">Signaled: '+Flagged+'</div> </div>'
                     $(".vehicle-search-results").append(VehicleElement);
                 });
@@ -297,7 +300,7 @@ AddPoliceAlert = function(data) {
     }
     $(".meos-recent-alerts").html('<div class="meos-recent-alert" id="recent-alert-'+randId+'"><span class="meos-recent-alert-title">Alert: '+data.alert.title+'</span><p class="meos-recent-alert-description">'+data.alert.description+'</p></div>');
     if (data.alert.title == "Assistance colleague") {
-        $(".meos-recent-alert").css({"background-color":"#d30404"}); 
+        $(".meos-recent-alert").css({"background-color":"#d30404"});
         $(".meos-recent-alert").addClass("emergency button");
     }
     $(".meos-alerts").prepend(AlertElement);

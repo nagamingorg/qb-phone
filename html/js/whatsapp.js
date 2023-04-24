@@ -184,7 +184,7 @@ FormatMessageTime = function() {
 
 $(document).on('click', '#whatsapp-openedchat-send', function(e){
     e.preventDefault();
-
+    $.post('https://qb-phone/SetFocusInput', JSON.stringify({}), function(){})
     var Message = $("#whatsapp-openedchat-message").val();
 
     if (Message !== null && Message !== undefined && Message !== "") {
@@ -195,6 +195,7 @@ $(document).on('click', '#whatsapp-openedchat-send', function(e){
             ChatTime: FormatMessageTime(),
             ChatType: "message",
         }));
+        $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
         $("#whatsapp-openedchat-message").val("");
         $("div.emojionearea-editor").data("emojioneArea").setText('');
     } else {
@@ -257,6 +258,7 @@ $(document).on('click', '#send-image', function(e){
 });
 
 QB.Phone.Functions.SetupChatMessages = function(cData, NewChatData) {
+    $.post('https://qb-phone/SetFocusInput', JSON.stringify({}), function(){})
     if (cData) {
         OpenedChatData.number = cData.number;
 

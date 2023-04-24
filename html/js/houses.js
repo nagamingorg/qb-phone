@@ -55,7 +55,7 @@ var AnimationDuration = 200;
 
 $(document).on('click', '#myhouse-option-transfer', function(e){
     e.preventDefault();
-
+    $.post('https://qb-phone/SetFocusInput', JSON.stringify({}), function(){})
     $(".myhouses-options").animate({
         left: -35+"vw"
     }, AnimationDuration);
@@ -75,7 +75,7 @@ $(document).on('click', '#myhouse-option-keys', function(e){
                     elem = '<div class="house-key" id="holder-'+i+'"><span class="house-key-holder">' + keyholder.charinfo.firstname + ' ' + keyholder.charinfo.lastname + '</span> <div class="house-key-delete"><i class="fas fa-trash"></i></div> </div>';
                 } else {
                     elem = '<div class="house-key" id="holder-'+i+'"><span class="house-key-holder">(Me) ' + keyholder.charinfo.firstname + ' ' + keyholder.charinfo.lastname + '</span></div>';
-                } 
+                }
                 $(".keys-container").append(elem);
                 $('#holder-' + i).data('KeyholderData', keyholder);
             }
@@ -126,7 +126,7 @@ function shakeElement(element){
 
 $(document).on('click', '#myhouse-option-transfer-confirm', function(e){
     e.preventDefault();
-        
+    $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
     var NewBSN = $(".myhouse-option-transfer-container-citizenid").val();
 
     $.post('https://qb-phone/TransferCid', JSON.stringify({
@@ -137,7 +137,7 @@ $(document).on('click', '#myhouse-option-transfer-confirm', function(e){
             $(".myhouses-options").animate({
                 left: 0
             }, AnimationDuration);
-        
+
             $(".myhouse-option-transfer-container").animate({
                 left: 35+"vw"
             }, AnimationDuration);
@@ -158,7 +158,7 @@ $(document).on('click', '#myhouse-option-transfer-confirm', function(e){
 
 $(document).on('click', '#myhouse-option-transfer-back', function(e){
     e.preventDefault();
-
+    $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
     $(".myhouses-options").animate({
         left: 0
     }, AnimationDuration);
