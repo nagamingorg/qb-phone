@@ -223,7 +223,6 @@ QB.Phone.Functions.LoadContacts = function(myContacts) {
 };
 
 $(document).on('click', '#new-chat-phone', function(e){
-    $.post('https://qb-phone/SetFocusInput', JSON.stringify({}), function(){})
     var ContactId = $(this).parent().parent().data('contactid');
     var ContactData = $("[data-contactid='"+ContactId+"']").data('contactData');
 
@@ -268,7 +267,6 @@ var CurrentEditContactData = {}
 
 $(document).on('click', '#edit-contact', function(e){
     e.preventDefault();
-    $.post('https://qb-phone/SetFocusInput', JSON.stringify({}), function(){})
     var ContactId = $(this).parent().parent().data('contactid');
     var ContactData = $("[data-contactid='"+ContactId+"']").data('contactData');
 
@@ -295,7 +293,7 @@ $(document).on('click', '#edit-contact', function(e){
 
 $(document).on('click', '#edit-contact-save', function(e){
     e.preventDefault();
-    $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
+
     var ContactName = DOMPurify.sanitize($(".phone-edit-contact-name").val() , {
         ALLOWED_TAGS: [],
         ALLOWED_ATTR: []
@@ -327,7 +325,7 @@ $(document).on('click', '#edit-contact-save', function(e){
 
 $(document).on('click', '#edit-contact-delete', function(e){
     e.preventDefault();
-    $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
+
     var ContactName = $(".phone-edit-contact-name").val();
     var ContactNumber = $(".phone-edit-contact-number").val();
     var ContactIban = $(".phone-edit-contact-iban").val();
@@ -348,7 +346,7 @@ $(document).on('click', '#edit-contact-delete', function(e){
 
 $(document).on('click', '#edit-contact-cancel', function(e){
     e.preventDefault();
-    $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
+
     QB.Phone.Animations.TopSlideUp(".phone-edit-contact", 250, -100);
     setTimeout(function(){
         $(".phone-edit-contact-number").val("");

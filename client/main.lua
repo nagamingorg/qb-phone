@@ -272,7 +272,6 @@ local function OpenPhone()
     QBCore.Functions.TriggerCallback('qb-phone:server:HasPhone', function(HasPhone)
         if HasPhone then
             PhoneData.PlayerData = QBCore.Functions.GetPlayerData()
-            SetNuiFocusKeepInput(true)
             SetNuiFocus(true, true)
             SendNUIMessage({
                 action = "open",
@@ -300,7 +299,7 @@ local function OpenPhone()
                 newPhoneProp()
             end)
 
-            QBCore.Functions.TriggerCallback('qb-garage:server:GetPlayerVehicles', function(vehicles)
+            QBCore.Functions.TriggerCallback('qb-garages:server:GetPlayerVehicles', function(vehicles)
                 PhoneData.GarageVehicles = vehicles
             end)
         else
@@ -546,7 +545,6 @@ RegisterNUICallback('Close', function(_, cb)
         PhoneData.AnimationData.anim = nil
         DoPhoneAnimation('cellphone_text_to_call')
     end
-    SetNuiFocusKeepInput(false)
     SetNuiFocus(false, false)
     SetTimeout(500, function()
         PhoneData.isOpen = false
@@ -795,18 +793,6 @@ end)
 
 RegisterNUICallback('GetMentionedTweets', function(_, cb)
     cb(PhoneData.MentionedTweets)
-end)
-
-RegisterNUICallback('SetFocusInput', function(_, cb)
-  SetNuiFocusKeepInput(false)
-  SetNuiFocus(true, true)
-  cb("ok")
-end)
-
-RegisterNUICallback('ReleaseFocusInput', function(_, cb)
-  SetNuiFocusKeepInput(true)
-  SetNuiFocus(true, true)
-  cb("ok")
 end)
 
 RegisterNUICallback('GetHashtags', function(_, cb)
@@ -1395,7 +1381,6 @@ RegisterNUICallback('SendMessage', function(data, cb)
 end)
 
 RegisterNUICallback("TakePhoto", function(_,cb)
-    SetNuiFocusKeepInput(false)
     SetNuiFocus(false, false)
     CreateMobilePhone(1)
     CellCamActivate(true, true)

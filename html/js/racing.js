@@ -64,7 +64,6 @@ function IsCreator(CitizenId, RaceData) {
 }
 
 function SetupRaces(Races) {
-    $.post('https://qb-phone/SetFocusInput', JSON.stringify({}), function(){})
     $(".racing-races").html("");
     if (Races.length > 0) {
         Races = (Races).reverse();
@@ -133,10 +132,7 @@ $(document).on('click', '#join-race', function(e){
                     }), function(IsBusy){
                         if (!IsBusy) {
                             $.post('https://qb-phone/JoinRace', JSON.stringify({
-                                RaceData: {
-                                    ...Data,
-                                    RaceId
-                                },
+                                ...Data
                             }));
                             $.post('https://qb-phone/GetAvailableRaces', JSON.stringify({}), function(Races){
                                 SetupRaces(Races);
@@ -171,7 +167,7 @@ $(document).on('click', '#quit-race', function(e){
 $(document).on('click', '#start-race', function(e){
     e.preventDefault();
 
-
+    
     var RaceId = $(this).parent().parent().attr('id');
     var Data = $("#"+RaceId).data('RaceData');
 
@@ -282,7 +278,7 @@ $(document).on('click', '#racing-create-accept', function(e){
 
     if (TrackName !== "" && TrackName !== undefined && TrackName !== null) {
         TrackName = DOMPurify.sanitize(TrackName , {
-            ALLOWED_TAGS: [],
+            ALLOWED_TAGS: [], 
             ALLOWED_ATTR: []
         });
         if (TrackName == '') TrackName = 'What are you trying?'

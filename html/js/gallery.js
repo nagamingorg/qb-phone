@@ -1,10 +1,9 @@
 function setUpGalleryData(Images){
-    $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
     $(".gallery-images").html("");
     if (Images != null) {
         $.each(Images, function(i, image){
             var Element = '<div class="gallery-image"><img src="'+image.image+'" alt="'+image.citizenid+'" class="tumbnail"></div>';
-
+            
             $(".gallery-images").append(Element);
             $("#image-"+i).data('ImageData', image);
         });
@@ -39,16 +38,15 @@ $(document).on('click', '#delete-button', function(e){
         $.post('https://qb-phone/DeleteImage', JSON.stringify({image:source}), function(Hashtags){
             setTimeout(()=>{
                 $('#return-button').click()
-                $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
                 $.post('https://qb-phone/GetGalleryData', JSON.stringify({}), function(data){
                     setTimeout(()=>{
                             setUpGalleryData(data);
-
+                        
                     },200)
                 });
             },200)
         })
-
+        
     }, 200);
 });
 
@@ -63,7 +61,6 @@ function SetupPostDetails(){
 
 $(document).on('click', '#make-post-button', function(e){
     e.preventDefault();
-    $.post('https://qb-phone/SetFocusInput', JSON.stringify({}), function(){})
     let source = $('#imagedata').attr('src')
     postImageUrl=source
 
@@ -80,7 +77,7 @@ $(document).on('click', '#make-post-button', function(e){
 
 $(document).on('click', '#return-button', function(e){
     e.preventDefault();
-    $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
+
     $(".gallery-homescreen").animate({
         left: 00+"vh"
     }, 200);
@@ -91,9 +88,8 @@ $(document).on('click', '#return-button', function(e){
 
 $(document).on('click', '#returndetail-button', function(e){
     e.preventDefault();
-    $.post('https://qb-phone/ReleaseFocusInput', JSON.stringify({}), function(){})
     returnDetail();
-
+    
 });
 
 function returnDetail(){

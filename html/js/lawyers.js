@@ -81,7 +81,7 @@ SetupLawyers = function(data) {
             var element = '<div class="lawyer-list"><div class="no-lawyers">There are no taxis available.</div></div>'
             $(".lawyers-list").append(element);
         }
-
+        
         $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(0, 102, 255);">Police (' + police.length + ')</h1>');
 
         if (police.length > 0) {
@@ -94,7 +94,7 @@ SetupLawyers = function(data) {
             var element = '<div class="lawyer-list"><div class="no-lawyers">There is no police available.</div></div>'
             $(".lawyers-list").append(element);
         }
-
+        
         $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(255, 0, 0);">Ambulance (' + ambulance.length + ')</h1>');
 
         if (ambulance.length > 0) {
@@ -127,12 +127,12 @@ SetupLawyers = function(data) {
 
         var element = '<div class="lawyer-list"><div class="no-lawyers">There are no taxis available.</div></div>'
         $(".lawyers-list").append(element);
-
+        
         $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(0, 102, 255);">Police (' + police.length + ')</h1>');
 
         var element = '<div class="lawyer-list"><div class="no-lawyers">There are no polices a available.</div></div>'
         $(".lawyers-list").append(element);
-
+        
         $(".lawyers-list").append('<br><h1 style="font-size:1.641025641025641vh; padding:1.0256410256410255vh; color:#fff; margin-top:0; width:100%; display:block; background-color: rgb(255, 0, 0);">Ambulance (' + ambulance.length + ')</h1>');
 
         var element = '<div class="lawyer-list"><div class="no-lawyers">There are no ambulance personnel a available.</div></div>'
@@ -144,7 +144,7 @@ $(document).on('click', '.lawyer-list-call', function(e){
     e.preventDefault();
 
     var LawyerData = $(this).parent().data('LawyerData');
-
+    
     var cData = {
         number: LawyerData.phone,
         name: LawyerData.name
@@ -172,10 +172,10 @@ $(document).on('click', '.lawyer-list-call', function(e){
                             QB.Phone.Animations.TopSlideDown('.phone-application-container', 400, 0);
                             QB.Phone.Functions.ToggleApp("phone-call", "block");
                         }, 450);
-
+    
                         CallData.name = cData.name;
                         CallData.number = cData.number;
-
+                    
                         QB.Phone.Data.currentApplication = "phone-call";
                     } else {
                         QB.Phone.Notifications.Add("fas fa-phone", "Phone", "You are already connected to a call!");

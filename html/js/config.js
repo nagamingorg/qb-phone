@@ -1,9 +1,9 @@
 Config = []
 
 Config.HeaderDisabledApps = [
-    "bank",
-    "whatsapp",
-    "meos",
+    "bank", 
+    "whatsapp", 
+    "meos", 
     "garage",
     "crypto",
     "racing",
